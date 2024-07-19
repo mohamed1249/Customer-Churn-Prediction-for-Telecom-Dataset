@@ -1,41 +1,127 @@
-# Customer Churn Prediction for Telecom Dataset
+# Telecom Customer Churn Prediction
 
-This repository contains code and documentation for building machine learning models to predict customer churn for a telecom dataset. The project aims to implement and compare four different machine learning models to determine which performs best in predicting churn.
+## Overview
 
-## Project Overview
+This repository contains code and documentation for predicting customer churn in a telecom dataset. The project involves the application of machine learning models to identify customers who are likely to churn. Four different models are used: Logistic Regression, Support Vector Classifier (SVC), Random Forest, and XGBoost.
 
-Customer churn prediction is a critical task for telecom companies to maintain their customer base and improve retention strategies. This project involves:
+## Table of Contents
 
-1. **Data Preprocessing**: Cleaning and preparing the data for modeling.
-2. **Model Implementation**: Building and evaluating four different models:
-   - Support Vector Machine (SVM)
-   - Logistic Regression (LR)
-   - Decision Tree (DT)
-   - Random Forest (RF)
-3. **Feature Engineering**: Feature selection and scaling to enhance model performance.
-4. **Model Evaluation**: Comparing the models based on accuracy, precision, recall, F1 score, and ROC AUC score.
+- [Overview](#overview)
+- [Requirements](#requirements)
+- [Data](#data)
+- [Preprocessing](#preprocessing)
+- [Modeling](#modeling)
+- [Results](#results)
+- [Files](#files)
+- [Usage](#usage)
+- [License](#license)
 
-## Installation
+## Requirements
 
-To run the code, you need to install the following package:
+To run the code, you'll need the following Python packages:
+
+- `pandas`
+- `numpy`
+- `matplotlib`
+- `seaborn`
+- `sklearn`
+- `xgboost`
+- `M-ana-package`
+- `eli5`
+
+You can install the required packages using:
 
 ```bash
-pip install M-ana-package
+pip install pandas numpy matplotlib seaborn scikit-learn xgboost M-ana-package eli5
 ```
+
+## Data
+
+The dataset used for this project is in the following files:
+
+- `Dataset_Sep2023/Data file.xlsx`: The main dataset containing customer information.
+- `Dataset_Sep2023/Discunnect Number.xlsx`: Contains information about disconnected numbers.
+
+## Preprocessing
+
+1. **Data Loading**: Load the data from the provided Excel files.
+2. **Data Cleaning**:
+   - Convert date columns to datetime format.
+   - Identify and handle disconnected numbers.
+   - Drop duplicate entries based on mobile number and last recharge date.
+3. **Feature Engineering**:
+   - Create features related to days since last recharge.
+   - Label customers as churned based on the gap between recharges.
+   - Convert date features to numerical values for modeling.
+
+## Modeling
+
+The following models were applied to predict customer churn:
+
+1. **Logistic Regression**:
+   - Trained and evaluated using basic settings.
+   - Hyperparameter tuning performed with GridSearchCV.
+   
+2. **Support Vector Classifier (SVC)**:
+   - Trained and evaluated using basic settings.
+   - Hyperparameter tuning performed with GridSearchCV.
+   
+3. **Random Forest Classifier**:
+   - Trained and evaluated using basic settings.
+   - Hyperparameter tuning performed with GridSearchCV.
+   
+4. **XGBoost**:
+   - Trained and evaluated using basic settings.
+   - Feature importance analysis conducted.
+
+Each model was evaluated based on accuracy, precision, recall, F1 score, and ROC AUC score.
+
+## Results
+
+The results of each model are summarized in the `scores` DataFrame and include:
+
+- Accuracy
+- Precision
+- Recall
+- F1 Score
+- ROC AUC Score
+
+## Files
+
+- `Data file.xlsx`: Contains customer data.
+- `Discunnect Number.xlsx`: Contains disconnected numbers.
+- `full_training_data_db.csv`: The processed dataset with churn labels.
+- `modeling_data_db.csv`: The final dataset used for modeling.
+- `LR_trained_model.pkl`: Serialized Logistic Regression model.
+- `SVC_trained_model.pkl`: Serialized SVC model.
+- `RF_trained_model.pkl`: Serialized Random Forest model.
+- `XGB_trained_model.pkl`: Serialized XGBoost model.
+- `correlations.csv`: Feature correlation matrix.
+- `scores.csv`: Model performance scores.
 
 ## Usage
 
-1. **Data Preparation**:
-   - Load and preprocess the dataset
-   - The script handles missing values, converts date columns, and creates features related to churn.
+1. Clone the repository:
 
-2. **Model Training**:
-   - Implement and train the following models:
-     - **Support Vector Machine (SVM)**
-     - **Logistic Regression (LR)**
-     - **Decision Tree (DT)**
-     - **Random Forest (RF)**
+   ```bash
+   git clone https://github.com/yourusername/telecom-churn-prediction.git
+   cd telecom-churn-prediction
+   ```
 
-3. **Model Evaluation**:
-   - Evaluate the models using various metrics and compare their performance.
-   - Results are saved
+2. Run the preprocessing script to prepare the data:
+
+   ```bash
+   python preprocess.py
+   ```
+
+3. Run the modeling script to train and evaluate models:
+
+   ```bash
+   python model.py
+   ```
+
+4. View results and analysis in the `scores.csv` and other output files.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
